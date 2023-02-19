@@ -1,4 +1,4 @@
-name: APK-TV Build
+name: APK-fmTV Build
 
 on:
 #  push:
@@ -15,7 +15,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Clone Project
-        run: git clone -b release --depth=1 https://github.com/FongMi/TV.git
+        run: git clone -b dev --depth=1 https://github.com/FongMi/TV.git
       - name: DIY
         run: |
           chmod +x diy-TV.sh
@@ -26,7 +26,7 @@ jobs:
           DIR=$(find ${{ github.workspace }} -name gradlew | grep -v exo | cut -d \/ -f$num)
           cd  ${{ github.workspace }}/$DIR
           chmod +x gradlew
-          ./gradlew assembleleanbackRelease --build-cache --parallel --daemon --warning-mode all
+          ./gradlew assemblemobileJavaRelease --build-cache --parallel --daemon --warning-mode all
       - name: Prepare App
         run: |
           mkdir -p ${{ github.workspace }}/apk/
