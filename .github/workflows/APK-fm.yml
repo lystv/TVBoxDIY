@@ -22,8 +22,6 @@ jobs:
           bash ${{ github.workspace }}/diy-TV.sh
       
       - name: Build With Gradle
-        if: ${{ env.commit }}
-        working-directory: TVBoxOSC
         run: |
           num=$(find ${{ github.workspace }} -name gradlew | grep -v exo | awk -F"/" '{print NF-1}')
           DIR=$(find ${{ github.workspace }} -name gradlew | grep -v exo | cut -d \/ -f$num)
