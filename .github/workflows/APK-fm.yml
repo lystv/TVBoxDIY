@@ -20,13 +20,16 @@ jobs:
         run: |
           chmod +x diy-TV.sh
           bash ${{ github.workspace }}/diy-TV.sh
+      
       - name: Build With Gradle
+        if: ${{ env.commit }}
+        working-directory: TVBoxOSC
         run: |
           num=$(find ${{ github.workspace }} -name gradlew | grep -v exo | awk -F"/" '{print NF-1}')
           DIR=$(find ${{ github.workspace }} -name gradlew | grep -v exo | cut -d \/ -f$num)
           cd  ${{ github.workspace }}/$DIR
           chmod +x gradlew
-          ./gradlew assemblemobileJavaRelease --build-cache --parallel --daemon --warning-mode all
+          ./gradlew assemblerelease --build-cache --parallel --daemon --warning-mode all
       - name: Prepare App
         run: |
           mkdir -p ${{ github.workspace }}/apk/
