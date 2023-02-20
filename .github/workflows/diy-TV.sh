@@ -45,14 +45,16 @@ jobs:
 
 
       - name: Build With Gradle
-
+        
         run: |
 
-          cd TV
+          
 
      
 
-     
+          num=$(find ${{ github.workspace }} -name gradlew  | awk -F"/" '{print NF-1}')
+          DIR=$(find ${{ github.workspace }} -name gradlew  | cut -d \/ -f$num)
+          cd $DIR
 
           chmod +x gradlew
 
