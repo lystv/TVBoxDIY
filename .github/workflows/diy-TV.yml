@@ -48,8 +48,6 @@ jobs:
         
         run: |
 
-          
-
      
 
           num=$(find ${{ github.workspace }} -name gradlew  | awk -F"/" '{print NF-1}')
