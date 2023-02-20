@@ -31,10 +31,11 @@ jobs:
 
 
       - name: Run build with Gradle
+        
         run: |
- 
+    
 
-
+          cd TV
           chmod +x gradlew
           ./gradlew assemblemobileJavarelease build --scan
       - name: Prepare App
