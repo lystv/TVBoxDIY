@@ -7,6 +7,7 @@ DIR=$(find $CURRENT_DIR -name gradlew | grep -v exo | cut -d \/ -f$num)
 cd $CURRENT_DIR/$DIR
 #删除release的APK
 rm -rf $CURRENT_DIR/$DIR/release/*.apk
+sed -i 's|apply from: file("/exo/core_settings.gradle")||g $CURRENT_DIR/$DIR/settings.gradle
 #添加PY支持
 #mkdir $CURRENT_DIR/$DIR/app/libs
 #wget --no-check-certificate -qO- "https://raw.githubusercontent.com/UndCover/PyramidStore/main/aar/pyramid.aar" -O $CURRENT_DIR/$DIR/app/libs/pyramid.aar
