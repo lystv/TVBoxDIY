@@ -20,19 +20,23 @@ jobs:
         run: |
           chmod +x diy-TV.sh
           bash ${{ github.workspace }}/diy-TV.sh
-      - uses: gradle/gradle-build-action@v2
-        with:
+      - name: Setup Gradle
 
-          arguments: runData
+        uses: gradle/gradle-build-action@v2
 
-          cache-disabled: true
-      - name: Build With Gradle
+
+
+
+
+
+
+      - name: Run build with Gradle
         run: |
           num=$(find ${{ github.workspace }} -name gradlew | grep -v exo | awk -F"/" '{print NF-1}')
           DIR=$(find ${{ github.workspace }} -name gradlew | grep -v exo | cut -d \/ -f$num)
           cd  ${{ github.workspace }}/$DIR
           chmod +x gradlew
-          ./gradlew assemblemobileJavarelease --build-cache --parallel --daemon --warning-mode all
+          ./gradlew assemblemobileJavarelease build --scan
       - name: Prepare App
         run: |
           mkdir -p ${{ github.workspace }}/apk/
